@@ -1,0 +1,30 @@
+---
+name: CI/CD
+on:
+  pull_request:
+    branches:
+      - main
+  push:
+    branches:
+      - main
+
+jobs:
+  build_container:
+    name: Build container based on matrix
+    runs-on: self-hosted
+    strategy:
+      matrix:
+        os: [ ubuntu2004, ubuntu2004, centos7 ]
+    steps:
+      - name: Checkput the codebase
+        uses: actions/checkout@v3
+
+      - name: Build and publish to registry
+        uses: elgohr/Publish-Docker-Github-Action@master
+        with:
+          name: udienz/docker-ansible
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+          dockerfile: ${{ matrix.os }}/Dockerfile
+          buildoptions: "--compress --force-rm"
+          tags: ${{ matrix.os }}
