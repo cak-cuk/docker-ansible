@@ -27,7 +27,8 @@ jobs:
       matrix:
         os: [ ubuntu2004, ubuntu2204, centos7 ]
     steps:
-      - name: Checkput the codebase
+      - uses: AutoModality/action-clean@v1
+      - name: Checkout the codebase
         uses: actions/checkout@v3
 
       - name: Hadolint
@@ -62,7 +63,8 @@ jobs:
       matrix:
         os: [ ubuntu2004, ubuntu2004, centos7 ]
     steps:
-      - name: Checkput the codebase
+      - uses: AutoModality/action-clean@v1
+      - name: Checkout the codebase
         uses: actions/checkout@v3
       - uses: docker/setup-qemu-action@v2
       - uses: docker/setup-buildx-action@v2
