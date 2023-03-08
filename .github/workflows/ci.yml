@@ -43,7 +43,7 @@ jobs:
           destination_branch: "master"
           pr_title: "[DRAFT] pull_request"
           pr_body: "PR Request from ${{ github.event_name }} event to ${{ github.ref }}."
-          github_token: ${{ secrets.GH_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
 
   build_container:
     name: Build container based on matrix
