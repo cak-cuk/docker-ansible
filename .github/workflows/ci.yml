@@ -20,7 +20,7 @@ on:
  
 jobs:
   test_and_build:
-    runs-on: self-hosted
+    runs-on: [ qemu ]
     name: Code check and build container, no push
     if: github.event_name == 'pull_request'
     strategy:
@@ -61,7 +61,7 @@ jobs:
 
   build_container:
     name: Build container based on matrix
-    runs-on: self-hosted
+    runs-on: [ qemu ]
     if: github.ref == 'refs/heads/main'
     strategy:
       matrix:
