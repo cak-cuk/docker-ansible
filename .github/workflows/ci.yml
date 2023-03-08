@@ -4,14 +4,51 @@ on:
   pull_request:
     branches:
       - main
+    paths-ignore:
+      - '**.md'
+      - '**.sh'
+      - '**.txt'
+    schedule:
+      - cron: '0 18 * * 0'
   push:
     branches:
       - main
-
+    paths-ignore:
+      - '**.md'
+      - '**.sh'
+      - '**.txt'
+ 
 jobs:
+  test_and_build:
+    runs-on: self-hosted
+    name: Code check and build container, no push
+    if: github.event_name == 'pull_request'
+    strategy:
+      matrix:
+        os: [ ubuntu2004, ubuntu2204, centos7 ]
+    steps:
+      - name: Checkput the codebase
+        uses: actions/checkout@v3
+
+      - name: Hadolint
+        uses: hadolint/hadolint-action@v1.6.0
+        with:
+          dockerfile: ${{ matrix.os }}/Dockerfile
+          ignore: DL3008 DL3007 DL3018 DL3033
+
+      - name: Create Pull Request
+        id: open-pr
+        uses: repo-sync/pull-request@v2
+        with:
+          destination_branch: "master"
+          pr_title: "[DRAFT] pull_request"
+          pr_body: "PR Request from ${{ github.event_name }} event to ${{ github.ref }}."
+          github_token: ${{ secrets.GH_TOKEN }}
+
   build_container:
     name: Build container based on matrix
     runs-on: self-hosted
+    if: github.ref == 'refs/heads/main'
     strategy:
       matrix:
         os: [ ubuntu2004, ubuntu2004, centos7 ]
