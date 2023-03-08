@@ -57,7 +57,7 @@ jobs:
           file: ${{ matrix.os }}/Dockerfile
           platforms: linux/amd64
           push: false
-          tags: ${{ github.repository }}:latest
+          tags: udienz/docker-ansible:${{ matrix.os }} 
 
   build_container:
     name: Build container based on matrix
@@ -90,4 +90,4 @@ jobs:
           file: ${{ matrix.os }}/Dockerfile
           platforms: linux/amd64
           push: true
-          tags: ${{ github.repository }}:latest
+          tags: udienz/docker-ansible:${{ matrix.os }} 
