@@ -8,8 +8,8 @@ on:
       - '**.md'
       - '**.sh'
       - '**.txt'
-    schedule:
-      - cron: '0 18 * * 0'
+  schedule:
+    - cron: '0 18 * * 0'
   push:
     branches:
       - main
