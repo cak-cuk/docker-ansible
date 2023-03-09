@@ -41,28 +41,6 @@ jobs:
           dockerfile: ${{ matrix.os }}/Dockerfile
           ignore: SC2086, DL3008, DL3013, DL3002, DL3007, DL3018, DL3033, SC3037, DL3059, SC2039
 
-      - uses: docker/setup-qemu-action@v2
-        if: ${{ github.actor != 'dependabot[bot]' }}
-      - uses: docker/setup-buildx-action@v2
-        if: ${{ github.actor != 'dependabot[bot]' }}
-
-      - name: Login to DockerHub
-        if: ${{ github.actor != 'dependabot[bot]' }}
-        uses:  docker/login-action@v2
-        with:
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_TOKEN }}
-
-      - name: Build image.
-        if: ${{ github.actor != 'dependabot[bot]' }}
-        uses: docker/build-push-action@v4
-        with:
-          context: ./
-          file: ${{ matrix.os }}/Dockerfile
-          platforms: linux/amd64
-          push: false
-          tags: udienz/docker-ansible:${{ matrix.os }}
-
   build_container:
     name: Build container based on matrix
     runs-on: [ qemu ]
