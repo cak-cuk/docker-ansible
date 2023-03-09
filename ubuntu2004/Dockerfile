@@ -1,4 +1,4 @@
-FROM udienz/buildpack:focal
+FROM udienz/buildpack:ubuntu2204
 LABEL maintainer="Mahyuddin Susanto"
 
 ARG user=jenkins
