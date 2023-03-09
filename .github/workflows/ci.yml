@@ -17,7 +17,7 @@ on:
       - '**.md'
       - '**.sh'
       - '**.txt'
- 
+
 jobs:
   test_and_build:
     runs-on: [ qemu ]
@@ -61,7 +61,7 @@ jobs:
           file: ${{ matrix.os }}/Dockerfile
           platforms: linux/amd64
           push: false
-          tags: udienz/docker-ansible:${{ matrix.os }} 
+          tags: udienz/docker-ansible:${{ matrix.os }}
 
   build_container:
     name: Build container based on matrix
@@ -94,4 +94,4 @@ jobs:
           file: ${{ matrix.os }}/Dockerfile
           platforms: linux/amd64
           push: true
-          tags: udienz/docker-ansible:${{ matrix.os }} 
+          tags: udienz/docker-ansible:${{ matrix.os }}
