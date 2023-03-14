@@ -20,7 +20,7 @@ rm -f /lib/systemd/system/basic.target.wants/*;\
 rm -f /lib/systemd/system/anaconda.target.wants/*;
 WORKDIR /
 RUN yum update -y \
-    && yum makecache fast \
+    && yum makecache timer \
     && yum -y install deltarpm epel-release \
 	&& yum -y update \
     && yum -y install sudo which python3-pip libselinux-python3 git git-lfs  \
