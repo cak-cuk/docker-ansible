@@ -1,4 +1,4 @@
-FROM udienz/buildpack:centos7
+FROM udienz/buildpack:centos8
 LABEL maintainer="Mahyuddin Susanto"
 
 ARG user=jenkins
