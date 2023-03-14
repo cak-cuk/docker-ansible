@@ -25,8 +25,7 @@ RUN yum update -y \
     && yum -y update \
     && yum -y install sudo which python3-pip libselinux-python3 git git-lfs  \
     && yum clean all \
-    && pip3 install --upgrade --no-cache-dir pip \
-    && localedef -c -f UTF-8 -i en_US en_US.UTF-8
+    && pip3 install --upgrade --no-cache-dir pip
 
 # Disable requiretty.
 RUN sed -i -e "s/^\(Defaults\s*requiretty\)/#--- \1/"  /etc/sudoers \
