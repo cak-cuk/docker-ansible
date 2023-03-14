@@ -20,7 +20,7 @@ on:
 
 jobs:
   test_and_build:
-    runs-on: [ self-hosted ]
+    runs-on: ubuntu-latest
     name: Code check
     if: github.event_name == 'pull_request'
     strategy:
@@ -42,8 +42,8 @@ jobs:
           ignore: SC2086, DL3008, DL3013, DL3002, DL3007, DL3018, DL3033, SC3037, DL3059, SC2039
 
   build_container:
-    name: Build container based on matrix
-    runs-on: [ ubuntu-latest ]
+    name: Build container
+    runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main'
     strategy:
       matrix:
