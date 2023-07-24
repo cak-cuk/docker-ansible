@@ -34,8 +34,8 @@ RUN export LC_ALL="en_US.UTF-8" \
     && echo "LC_ALL=en_US.UTF-8" >> $HOME/.bashrc \
     && export PATH="$HOME/bin:$HOME/.local/bin:$PATH" \
     && echo 'export PATH="$HOME/bin:$HOME/.local/bin:$PATH"' >> $HOME/.bashrc \
-    && python3 -m pip install --no-cache-dir --upgrade pip \
-    && pip3 install --no-cache-dir ansible ansible-lint molecule-docker
+    && python3 -m pip install --no-cache-dir --upgrade --ignore-installed pip \
+    && pip3 install --no-cache-dir --ignore-installed ansible ansible-lint molecule-docker
 
 # USER root
 RUN mkdir -p /etc/ansible \
