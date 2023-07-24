@@ -25,7 +25,7 @@ RUN yum update -y \
     && yum -y update \
     && yum -y install sudo which python3-pip libselinux-python3 git git-lfs  \
     && yum clean all \
-    && pip3 install --upgrade --no-cache-dir pip
+    && pip3 install --upgrade --no-cache-dir --ignore-installed pip
 
 # Disable requiretty.
 RUN sed -i -e "s/^\(Defaults\s*requiretty\)/#--- \1/"  /etc/sudoers \
@@ -40,8 +40,8 @@ RUN export LC_ALL=en_US.UTF-8 \
     && echo "LC_ALL=en_US.UTF-8" >> $HOME/.bashrc \
     && export PATH="$HOME/bin:$HOME/.local/bin:$PATH" \
     && echo 'export PATH=$HOME/bin:$HOME/.local/bin:$PATH' >> $HOME/.bashrc \
-    && python3 -m pip install --no-cache-dir --upgrade pip \
-   && pip3 install --no-cache-dir ansible ansible-lint molecule-docker
+    && python3 -m pip install --no-cache-dir --upgrade --ignore-installed pip \
+   && pip3 install --no-cache-dir --ignore-installed ansible ansible-lint molecule-docker
 
 # USER root
 # Install Ansible inventory file.
