@@ -29,7 +29,7 @@ RUN wget -q -O /initctl_faker \
     && chmod +x /initctl_faker \
     && rm -fr /sbin/initctl && ln -s /initctl_faker /sbin/initctl
 
-USER jenkins
+# USER jenkins
 RUN export LC_ALL="en_US.UTF-8" \
     && echo "LC_ALL=en_US.UTF-8" >> $HOME/.bashrc \
     && export PATH="$HOME/bin:$HOME/.local/bin:$PATH" \
@@ -37,7 +37,7 @@ RUN export LC_ALL="en_US.UTF-8" \
     && python3 -m pip install --no-cache-dir --upgrade pip \
     && pip3 install --no-cache-dir ansible ansible-lint molecule-docker
 
-USER root
+# USER root
 RUN mkdir -p /etc/ansible \
     && rm -f /lib/systemd/system/systemd*udev* \
     && rm -f /lib/systemd/system/getty.target

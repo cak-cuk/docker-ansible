@@ -36,7 +36,7 @@ RUN sed -i -e "s/^\(Defaults\s*requiretty\)/#--- \1/"  /etc/sudoers \
     && echo "Defaults:${user} !requiretty" >> /etc/sudoers \
     && echo "${user} ALL=NOPASSWD: ALL" >> /etc/sudoers.d/${user}
 
-USER jenkins
+# USER jenkins
 RUN export LC_ALL=en_US.UTF-8 \
     && echo "LC_ALL=en_US.UTF-8" >> $HOME/.bashrc \
     && export PATH="$HOME/bin:$HOME/.local/bin:$PATH" \
@@ -44,7 +44,7 @@ RUN export LC_ALL=en_US.UTF-8 \
     && python3 -m pip install --no-cache-dir --upgrade pip \
 	&& pip3 install --no-cache-dir ansible ansible-lint molecule-docker
 
-USER root
+# USER root
 # Install Ansible inventory file.
 RUN mkdir -p /etc/ansible \
 	&& echo -e '[local]\nlocalhost ansible_connection=local' > /etc/ansible/hosts
