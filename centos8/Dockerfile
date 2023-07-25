@@ -23,7 +23,7 @@ RUN yum update -y \
     && yum makecache timer \
     && yum -y install epel-release \
     && yum -y update \
-    && yum -y install sudo which python3-pip libselinux-python3 git git-lfs  \
+    && yum -y install sudo which python3-pip libselinux-python3 git git-lfs sshpass \
     && yum clean all \
     && pip3 install --upgrade --no-cache-dir --ignore-installed pip
 
