@@ -23,7 +23,7 @@ RUN yum update -y \
     && yum makecache fast \
     && yum -y install deltarpm epel-release \
 	&& yum -y update \
-    && yum -y install sudo which python3-pip libselinux-python3 git git-lfs  \
+    && yum -y install sudo which python3-pip libselinux-python3 git git-lfs sshpass \
     && yum clean all \
     && pip3 install --upgrade --no-cache-dir --ignore-installed pip \
 	&& localedef -c -f UTF-8 -i en_US en_US.UTF-8
